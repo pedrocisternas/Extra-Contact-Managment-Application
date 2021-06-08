@@ -1,7 +1,8 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			//Your data structures, A.K.A Entities
+			contacts: []
 		},
 		actions: {
 			//(Arrow) Functions that update the Store
@@ -14,7 +15,7 @@ const getState = ({ getStore, setStore }) => {
 						}
 						return response.json();
 					})
-					.then(data => console.log(data))
+					.then(data => setStore({ contacts: data }))
 					.catch(error => console.log("There was the following error: \n", error));
 			},
 			postFetch: contact => {
@@ -37,7 +38,23 @@ const getState = ({ getStore, setStore }) => {
 						}
 						return response.json();
 					})
-					.then(data => console.log(data))
+					.then(data => {
+						console.log(data);
+						getActions().getFetch();
+					})
+					.catch(error => console.log("There was the following error: \n", error));
+			},
+			deleteFetch: id => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "DELETE"
+				})
+					.then(response => {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => getActions().getFetch())
 					.catch(error => console.log("There was the following error: \n", error));
 			}
 		}
