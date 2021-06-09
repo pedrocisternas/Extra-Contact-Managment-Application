@@ -24,16 +24,15 @@ export const Contacts = () => {
 					<ul className="list-group pull-down" id="contact-list">
 						{store.contacts
 							? store.contacts.map((elem, i) => (
-									<p key={i}>
-										<ContactCard
-											name={elem.full_name}
-											email={elem.email}
-											phone={elem.phone}
-											address={elem.address}
-											id={elem.id}
-											onDelete={() => setState({ showModal: true, id: elem.id })}
-										/>
-									</p>
+									<ContactCard
+										key={i}
+										name={elem.full_name}
+										email={elem.email}
+										phone={elem.phone}
+										address={elem.address}
+										id={elem.id}
+										onDelete={() => setState({ showModal: true, id: elem.id })}
+									/>
 							  ))
 							: "Loading..."}
 					</ul>

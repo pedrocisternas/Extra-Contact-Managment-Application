@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export const AddContact = props => {
 	const { store, actions } = useContext(GlobalState);
-	const [contact, setContact] = useState({ name: null, email: null, address: null, phone: null });
+	const [contact, setContact] = useState({ full_name: null, email: null, address: null, phone: null });
 	const handleInput = e => {
 		console.log(e.target.name);
 		setContact({ ...contact, [e.target.name]: e.target.value });
@@ -27,7 +27,7 @@ export const AddContact = props => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
-							name="name"
+							name="full_name"
 						/>
 					</div>
 					<div className="form-group">
